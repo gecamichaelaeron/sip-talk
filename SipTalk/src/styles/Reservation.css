@@ -1,0 +1,183 @@
+.reservation-page {
+  background: var(--light);
+  min-height: 100vh;
+  padding-top: 80px;
+}
+
+.reservation-container {
+  max-width: 600px;
+  margin: 3rem auto;
+  padding: 2rem;
+  background: var(--secondary);
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.reservation-container h2 {
+  font-family: "Playfair Display", serif;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  font-size: 2rem;
+}
+
+.reservation-container form {
+  display: grid;
+  gap: 1rem;
+}
+
+.reservation-container input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Open Sans", sans-serif;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+}
+
+.reservation-container input:focus {
+  outline: none;
+  border-color: var(--primary);
+}
+
+.reservation-container button[type="submit"] {
+  padding: 0.75rem;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.reservation-container button[type="submit"]:hover:not(:disabled) {
+  background: var(--accent);
+  color: var(--text);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(212, 163, 115, 0.5);
+}
+
+.reservation-container button[type="submit"]:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.reservation-container .back-button {
+  display: block;
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.reservation-container .back-button:hover {
+  background: var(--primary);
+  color: white;
+}
+
+/* Custom Modal Alert */
+.custom-alert {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: var(--light);
+  color: var(--text);
+  font-family: 'Playfair Display', serif;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  text-align: center;
+  width: 320px;
+  opacity: 0;
+  transition: all 0.3s ease-in-out;
+  z-index: 9999;
+}
+
+.custom-alert.show {
+  display: block;
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.custom-alert h3 {
+  margin-bottom: 10px;
+  font-size: 20px;
+  color: var(--primary);
+}
+
+.custom-alert p {
+  font-size: 15px;
+  margin-bottom: 15px;
+}
+
+.custom-alert button {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 0 5px;
+  transition: background 0.2s ease;
+}
+
+.custom-alert button:hover {
+  background: var(--accent);
+  color: var(--text);
+}
+
+/* Toast Notification */
+.toast {
+  visibility: hidden;
+  min-width: 200px;
+  margin-left: -100px;
+  background-color: var(--primary);
+  color: var(--light);
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  z-index: 9999;
+  left: 50%;
+  bottom: 30px;
+  font-size: 14px;
+  font-family: 'Open Sans', sans-serif;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s, transform 0.5s;
+}
+
+.toast.show {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .reservation-container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .reservation-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .custom-alert {
+    width: 280px;
+  }
+}
+

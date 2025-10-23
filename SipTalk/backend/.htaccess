@@ -1,0 +1,36 @@
+# .htaccess for Sip & Talk Coffee Shop Backend
+
+# Enable Rewrite Engine
+RewriteEngine On
+
+# CORS Headers for development
+Header set Access-Control-Allow-Origin "http://localhost:5174"
+Header set Access-Control-Allow-Credentials "true"
+Header set Access-Control-Allow-Methods "GET, POST, PUT, DELETE, OPTIONS"
+Header set Access-Control-Allow-Headers "Content-Type, Authorization"
+
+# Handle preflight requests
+RewriteCond %{REQUEST_METHOD} OPTIONS
+RewriteRule ^(.*)$ $1 [R=200,L]
+
+# Deny access to sensitive files
+<FilesMatch "^(db\.php|config\.php)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Enable error logging (comment out in production)
+php_flag display_errors On
+php_flag display_startup_errors On
+
+# Set default charset
+AddDefaultCharset UTF-8
+
+# Disable directory listing
+Options -Indexes
+
+# Set PHP memory limit
+php_value memory_limit 256M
+php_value upload_max_filesize 10M
+php_value post_max_size 10M
+

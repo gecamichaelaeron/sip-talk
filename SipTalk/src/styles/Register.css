@@ -1,0 +1,7 @@
+/* Register styles inherit from Login.css */
+/* Additional specific styles can be added here if needed */
+
+.auth-container .auth-box {
+  max-width: 380px;
+}
+
