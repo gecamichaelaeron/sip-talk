@@ -1,0 +1,61 @@
+# Node modules
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build output
+dist/
+build/
+
+# Environment files
+.env
+.env.local
+.env.production
+.env.development
+env.template
+
+# Git
+.git/
+.gitignore
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Documentation
+*.md
+!README.md
+
+# Docker
+docker-compose.yml
+.dockerignore
+Dockerfile
+
+# Database dumps
+*.sql.gz
+*.dump
+
+# Logs
+logs/
+*.log
+
+# Test files
+tests/
+*.test.js
+*.spec.js
+
+# Coverage
+coverage/
+.nyc_output/
+
+# Temporary files
+tmp/
+temp/
+

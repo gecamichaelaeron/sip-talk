@@ -1,0 +1,57 @@
+# Render Blueprint for SipTalk Coffee Shop
+# This file defines infrastructure as code for Render.com deployment
+
+services:
+  # Backend API Service (PHP + Apache)
+  - type: web
+    name: siptalk-api
+    env: docker
+    dockerfilePath: ./Dockerfile
+    region: oregon  # Options: oregon, frankfurt, singapore, ohio
+    plan: free  # Options: free, starter, standard, pro
+    branch: main
+    healthCheckPath: /api/health.php
+    envVars:
+      - key: DB_HOST
+        fromDatabase:
+          name: siptalk-postgres
+          property: host
+      - key: DB_PORT
+        fromDatabase:
+          name: siptalk-postgres
+          property: port
+      - key: DB_NAME
+        fromDatabase:
+          name: siptalk-postgres
+          property: database
+      - key: DB_USER
+        fromDatabase:
+          name: siptalk-postgres
+          property: user
+      - key: DB_PASSWORD
+        fromDatabase:
+          name: siptalk-postgres
+          property: password
+      - key: FRONTEND_URL
+        value: https://siptalk-coffeeshop.netlify.app
+      - key: NODE_ENV
+        value: production
+      - key: SESSION_SECRET
+        generateValue: true
+      - key: JWT_SECRET
+        generateValue: true
+    buildFilter:
+      paths:
+        - backend/**
+        - Dockerfile
+        - docker-compose.yml
+
+# PostgreSQL Database
+databases:
+  - name: siptalk-postgres
+    databaseName: sip_talk_db
+    user: siptalk_user
+    plan: free  # Options: free, starter, standard, pro
+    region: oregon
+    ipAllowList: []  # Empty means accessible from anywhere
+
