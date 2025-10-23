@@ -1,0 +1,64 @@
+# Netlify Configuration for SipTalk Coffee Shop Frontend
+
+[build]
+  # Base directory for build - project is in SipTalk subdirectory
+  base = "SipTalk"
+  
+  # Build command
+  command = "npm run build"
+  
+  # Publish directory (Vite builds to 'dist' by default)
+  publish = "dist"
+
+# Environment variables for build
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# Redirect rules for SPA (Single Page Application)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = false
+
+# Headers for security and CORS
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# API proxy (optional - if you want to proxy API requests through Netlify)
+[[redirects]]
+  from = "/api/*"
+  to = "https://your-render-app.onrender.com/api/:splat"
+  status = 200
+  force = true
+  headers = {X-From = "Netlify"}
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Development context
+[context.development]
+  command = "npm run dev"
+
+# Preview deployments
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch deploys
+[context.branch-deploy]
+  command = "npm run build"
+
+# Functions (if you add Netlify Functions later)
+[functions]
+  directory = "netlify/functions"
+
