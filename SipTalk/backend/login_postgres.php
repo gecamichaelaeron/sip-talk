@@ -1,6 +1,6 @@
 <?php
 /**
- * Login API Endpoint
+ * Login API Endpoint (PostgreSQL)
  * Handles user authentication
  */
 
@@ -18,12 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
     exit(0);
 }
 
-// Include database connection - Use PostgreSQL for production
-if (file_exists('db_postgres.php')) {
-    require_once 'db_postgres.php';
-} else {
-    require_once 'db.php'; // Fallback to MySQL for local dev
-}
+// Include PostgreSQL database connection
+require_once 'db_postgres.php';
 
 // Only allow POST requests
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -43,33 +39,18 @@ if (!is_valid_email($email)) {
     send_json_response(false, 'Invalid email format');
 }
 
-// Check if user exists - Support both mysqli and PDO
-if ($conn instanceof PDO) {
-    // PostgreSQL/PDO
-    $sql = "SELECT id, fullname, email, password FROM users WHERE email = :email";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute(['email' => $email]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-    
-    if (!$user) {
-        send_json_response(false, 'Email not registered. Please sign up first.');
-    }
-} else {
-    // MySQL/mysqli
-    $sql = "SELECT id, fullname, email, password FROM users WHERE email = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->bind_param("s", $email);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows === 0) {
-        send_json_response(false, 'Email not registered. Please sign up first.');
-    }
-    
-    // Verify password
-    $user = $result->fetch_assoc();
+// Check if user exists (PostgreSQL/PDO syntax)
+$sql = "SELECT id, fullname, email, password FROM users WHERE email = :email";
+$stmt = $conn->prepare($sql);
+$stmt->execute(['email' => $email]);
+
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+if (!$user) {
+    send_json_response(false, 'Email not registered. Please sign up first.');
 }
 
+// Verify password
 if (!verify_password($password, $user['password'])) {
     send_json_response(false, 'Incorrect password. Please try again.');
 }
@@ -91,11 +72,5 @@ send_json_response(true, 'Login successful', [
         'email' => $user['email']
     ]
 ]);
-
-// Close connection if mysqli
-if (!($conn instanceof PDO)) {
-    $stmt->close();
-    $conn->close();
-}
 ?>
 
