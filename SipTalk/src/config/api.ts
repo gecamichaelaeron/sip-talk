@@ -13,7 +13,7 @@ export const API_CONFIG = {
   
   // Base URL for your PHP backend
   // For XAMPP, this would typically be: http://localhost/Aeron%20Coffee%20Shop/
-  BASE_URL: process.env.REACT_APP_API_URL || 'http://localhost',
+  BASE_URL: import.meta.env.VITE_API_URL || 'http://localhost',
   
   // API Endpoints (your PHP files)
   ENDPOINTS: {
