@@ -42,7 +42,8 @@ const Menu: React.FC<MenuProps> = ({ onMenuClick }) => {
     slidesToShow: 3,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 1000,
+    autoplaySpeed: 3000,
+    speed: 800,
     arrows: true,
     dots: true,
     responsive: [
@@ -73,21 +74,24 @@ const Menu: React.FC<MenuProps> = ({ onMenuClick }) => {
 
   return (
     <div className="container" id="menu">
-      <h2 className="section-title">Our Menu</h2>
-      <div className="menu-buttons">
-        <Slider {...settings}>
-          {menuItems.map((item, index) => (
-            <div key={index}>
-              <a 
-                href={item.href}
-                onClick={(e) => handleClick(e, item.href)}
-                style={{ backgroundImage: `url(${item.image})` }}
-              >
-                <span>{item.title}</span>
-              </a>
-            </div>
-          ))}
-        </Slider>
+      <div className="menu-content">
+        <h2 className="section-title">Our Menu</h2>
+        <p className="menu-subtitle">Explore our carefully curated selection of beverages and treats</p>
+        <div className="menu-buttons">
+          <Slider {...settings}>
+            {menuItems.map((item, index) => (
+              <div key={index}>
+                <a 
+                  href={item.href}
+                  onClick={(e) => handleClick(e, item.href)}
+                  style={{ backgroundImage: `url(${item.image})` }}
+                >
+                  <span>{item.title}</span>
+                </a>
+              </div>
+            ))}
+          </Slider>
+        </div>
       </div>
     </div>
   );

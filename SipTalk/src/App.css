@@ -1,3 +1,7 @@
+/* ==========================================
+   MOBILE-FIRST RESPONSIVE DESIGN
+   ========================================== */
+
 :root {
   --primary: #6f4e37;
   --secondary: #f3e9dc;
@@ -41,59 +45,221 @@ body {
   flex-direction: column;
 }
 
+/* ==========================================
+   NAVBAR - Mobile First with Hamburger Menu
+   ========================================== */
 .navbar-background {
   background: linear-gradient(135deg, var(--primary) 0%, #5a4030 100%);
-  padding: 1rem 0;
+  padding: 0.7rem 0;
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 20;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
   backdrop-filter: blur(10px);
 }
 
-nav {
+.navbar-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   align-items: center;
-  margin-right: 3rem;
-  gap: 2rem;
-  flex-wrap: wrap;
 }
 
-nav a,
-nav span {
+.navbar-brand a {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--light);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.navbar-brand a:active {
+  color: var(--accent);
+}
+
+/* Hamburger Menu Button - Mobile Only */
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 30;
+}
+
+.hamburger span {
+  width: 100%;
+  height: 3px;
+  background-color: var(--light);
+  border-radius: 3px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Mobile Navigation Menu */
+.nav-menu {
+  position: fixed;
+  top: 60px;
+  right: -100%;
+  width: 70%;
+  max-width: 300px;
+  height: calc(100vh - 60px);
+  background: linear-gradient(135deg, var(--primary) 0%, #5a4030 100%);
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+  gap: 0;
+  transition: right 0.3s ease;
+  overflow-y: auto;
+  box-shadow: -4px 0 8px rgba(0, 0, 0, 0.3);
+}
+
+.nav-menu.active {
+  right: 0;
+}
+
+.nav-menu a,
+.nav-menu span,
+.nav-menu .nav-link-btn {
   color: #c7c1bb;
   text-decoration: none;
   font-weight: 500;
-  padding: 0.6rem 1rem;
+  padding: 0.9rem 1.5rem;
   cursor: pointer;
-  position: relative;
   transition: all 0.3s ease;
-  border-radius: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  font-size: 0.95rem;
+  display: block;
 }
 
-nav a:hover {
-  color: var(--light);
+.nav-menu a:active,
+.nav-menu .nav-link-btn:active {
   background-color: rgba(255, 255, 255, 0.1);
-  transform: translateY(-2px);
+  color: var(--light);
 }
 
-nav a.active {
+.nav-menu a.active {
   color: var(--light);
   background-color: rgba(212, 163, 115, 0.3);
-  border-bottom: 3px solid var(--accent);
+  border-left: 4px solid var(--accent);
   font-weight: 600;
 }
 
-nav span {
+.nav-menu .user-welcome {
   font-weight: 400;
-  padding: 0.6rem 1rem;
   background-color: rgba(255, 255, 255, 0.05);
-  border-radius: 5px;
-  font-size: 0.9rem;
-  border-left: 3px solid var(--accent);
+  font-size: 0.85rem;
+  border-left: 4px solid var(--accent);
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .navbar-background {
+    padding: 0.9rem 0;
+  }
+
+  .navbar-brand a {
+    font-size: 1.5rem;
+  }
+
+  .hamburger {
+    display: none;
+  }
+
+  .nav-menu {
+    position: static;
+    flex-direction: row;
+    width: auto;
+    max-width: none;
+    height: auto;
+    background: transparent;
+    padding: 0;
+    gap: 0.8rem;
+    box-shadow: none;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  .nav-menu a,
+  .nav-menu span,
+  .nav-menu .nav-link-btn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.85rem;
+    border-bottom: none;
+    border-radius: 5px;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu .nav-link-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: var(--light);
+  }
+
+  .nav-menu a.active {
+    background-color: rgba(212, 163, 115, 0.3);
+    border-left: none;
+    border-bottom: 3px solid var(--accent);
+  }
+
+  .nav-menu .user-welcome {
+    font-size: 0.8rem;
+    border-left: 3px solid var(--accent);
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .navbar-background {
+    padding: 1rem 0;
+  }
+
+  .navbar-brand a {
+    font-size: 1.6rem;
+  }
+
+  .navbar-brand a:hover {
+    color: var(--accent);
+  }
+
+  .nav-menu {
+    gap: 1.5rem;
+  }
+
+  .nav-menu a,
+  .nav-menu span,
+  .nav-menu .nav-link-btn {
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+  }
+
+  .nav-menu a:hover,
+  .nav-menu .nav-link-btn:hover {
+    transform: translateY(-2px);
+  }
+
+  .nav-menu .user-welcome {
+    font-size: 0.9rem;
+  }
 }
 
 .nav-wrapper {
@@ -101,70 +267,408 @@ nav span {
   z-index: 10;
 }
 
+/* ==========================================
+   HEADER - Mobile First
+   ========================================== */
 header {
   background-image: url("https://images.pexels.com/photos/460257/pexels-photo-460257.jpeg");
   background-size: cover;
   background-position: center;
-  background-attachment: fixed;
-  height: 100vh;
-  margin-top: 50px;
+  background-attachment: scroll;
+  min-height: 60vh;
+  margin-top: 60px;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: center;
-  padding-left: 3rem;
+  padding: 1rem;
   transition: filter 0.3s ease;
 }
 
 header h1 {
   font-family: "Playfair Display", serif;
-  font-size: 5rem;
+  font-size: 2rem;
   color: #c7c1bb;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 header p {
-  font-size: 1.25rem;
+  font-size: 0.95rem;
   color: #c7c1bb;
+  text-align: center;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
+/* Tablet and up */
+@media (min-width: 768px) {
+  header {
+    min-height: 80vh;
+    margin-top: 70px;
+    justify-content: flex-start;
+    padding-left: 2rem;
+  }
+
+  header h1 {
+    font-size: 3.5rem;
+    text-align: left;
+  }
+
+  header p {
+    font-size: 1.1rem;
+    text-align: left;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  header {
+    background-attachment: fixed;
+    height: 100vh;
+    padding-left: 3rem;
+  }
+
+  header h1 {
+    font-size: 5rem;
+  }
+
+  header p {
+    font-size: 1.25rem;
+  }
+}
+
+/* ==========================================
+   CONTAINER & SECTIONS - Mobile First
+   ========================================== */
 .container {
-  max-width: 1100px;
-  margin: 2rem auto;
+  max-width: 100%;
+  margin: 1rem auto;
   padding: 0 1rem;
+}
+
+@media (min-width: 768px) {
+  .container {
+    max-width: 720px;
+    margin: 1.5rem auto;
+    padding: 0 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container {
+    max-width: 1100px;
+    margin: 2rem auto;
+  }
 }
 
 .section-title {
   text-align: center;
-  margin-bottom: 2rem;
-  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
   font-family: "Playfair Display", serif;
 }
 
-/* Menu buttons */
+@media (min-width: 768px) {
+  .section-title {
+    margin-bottom: 2rem;
+    font-size: 1.8rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .section-title {
+    font-size: 2rem;
+  }
+}
+
+/* Section Spacing - Mobile First */
+#menu {
+  padding-top: 4rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#about {
+  padding-top: 5rem;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+#contact {
+  margin-top: 3rem;
+  margin-bottom: 2rem;
+}
+
+#feedback {
+  padding-top: 5rem;
+  margin-top: 0;
+  margin-bottom: 0;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ==========================================
+   ABOUT SECTION - Mobile First
+   ========================================== */
+.about-content {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.about-text {
+  max-width: 100%;
+  margin: 0 auto 2rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.about-highlights {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.highlight-item {
+  background: var(--secondary);
+  padding: 1.5rem;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.highlight-item h3 {
+  font-family: "Playfair Display", serif;
+  color: var(--primary);
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.highlight-item p {
+  color: var(--text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.highlight-item:active {
+  transform: translateY(2px);
+}
+
+@media (min-width: 768px) {
+  #menu {
+    padding-top: 5rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+  }
+
+  #about {
+    padding-top: 6rem;
+    margin-top: 5rem;
+    margin-bottom: 5rem;
+  }
+
+  #contact {
+    margin-top: 5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  #feedback {
+    padding-top: 6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+  }
+
+  .about-text {
+    max-width: 650px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+  }
+
+  .about-highlights {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .highlight-item {
+    padding: 1.75rem;
+  }
+
+  .highlight-item h3 {
+    font-size: 1.3rem;
+  }
+
+  .highlight-item p {
+    font-size: 0.95rem;
+  }
+
+  .menu-subtitle {
+    font-size: 1rem;
+  }
+
+  .social-links {
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.25rem;
+  }
+
+  .social-link {
+    max-width: 240px;
+    padding: 1rem 1.3rem;
+    font-size: 0.95rem;
+  }
+
+  .contact-intro {
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  #menu {
+    padding-top: 6rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+  }
+
+  #about {
+    padding-top: 7rem;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
+  }
+
+  #contact {
+    margin-top: 8rem;
+    margin-bottom: 3rem;
+  }
+
+  #feedback {
+    padding-top: 7rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    min-height: 100vh;
+  }
+
+  .about-text {
+    max-width: 700px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+  }
+
+  .about-highlights {
+    gap: 2rem;
+  }
+
+  .highlight-item {
+    padding: 2rem;
+  }
+
+  .highlight-item h3 {
+    font-size: 1.4rem;
+  }
+
+  .highlight-item p {
+    font-size: 1rem;
+  }
+
+  .highlight-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+  }
+
+  .menu-subtitle {
+    font-size: 1.05rem;
+  }
+
+  .social-links {
+    gap: 1.5rem;
+  }
+
+  .social-link {
+    max-width: 260px;
+    padding: 1.1rem 1.5rem;
+    font-size: 1rem;
+  }
+
+  .social-link:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+
+  .social-link.email:hover {
+    background: var(--secondary);
+  }
+
+  .social-link.facebook:hover {
+    background: #f0f7ff;
+  }
+
+  .social-link.instagram:hover {
+    background: #fff5f7;
+  }
+
+  .contact-intro {
+    font-size: 1.05rem;
+  }
+}
+
+/* ==========================================
+   MENU SECTION - Mobile First
+   ========================================== */
+.menu-content {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.menu-subtitle {
+  font-size: 0.9rem;
+  color: var(--text);
+  margin-bottom: 2rem;
+  opacity: 0.8;
+  line-height: 1.5;
+}
+
+/* ==========================================
+   MENU BUTTONS - Mobile First
+   ========================================== */
 .menu-buttons {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 1rem;
   text-align: center;
 }
 
 .menu-buttons a {
   position: relative;
   display: inline-block;
-  width: 240px;
-  height: 150px;
+  width: 100%;
+  max-width: 320px;
+  height: 140px;
   color: white;
   text-decoration: none;
   border-radius: 12px;
   font-weight: 700;
-  font-size: 1.4rem;
-  box-shadow: 0 4px 10px rgba(111, 78, 55, 0.5);
+  font-size: 1.3rem;
+  box-shadow: 0 3px 8px rgba(111, 78, 55, 0.4);
   overflow: hidden;
   text-align: center;
-  line-height: 150px;
+  line-height: 140px;
   background-size: cover;
   background-position: center;
-  transition: 0.3s;
+  transition: all 0.3s ease;
 }
 
 .menu-buttons a::before {
@@ -174,6 +678,7 @@ header p {
   background-color: rgba(111, 78, 55, 0.5);
   border-radius: 12px;
   z-index: 0;
+  transition: background-color 0.3s ease;
 }
 
 .menu-buttons a span {
@@ -181,67 +686,241 @@ header p {
   z-index: 1;
 }
 
-.menu-buttons a:hover {
-  background-color: var(--accent);
-  color: var(--text);
-  box-shadow: 0 6px 14px rgba(212, 163, 115, 0.7);
-  transform: scale(1.05);
+.menu-buttons a:active {
+  transform: scale(0.98);
 }
 
-/* Slick carousel customization */
+@media (min-width: 768px) {
+  .menu-buttons {
+    gap: 15px;
+  }
+
+  .menu-buttons a {
+    width: 220px;
+    height: 145px;
+    font-size: 1.35rem;
+    line-height: 145px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .menu-buttons {
+    gap: 20px;
+  }
+
+  .menu-buttons a {
+    width: 240px;
+    height: 150px;
+    font-size: 1.4rem;
+    line-height: 150px;
+    box-shadow: 0 4px 10px rgba(111, 78, 55, 0.5);
+  }
+
+  .menu-buttons a:hover {
+    box-shadow: 0 6px 14px rgba(212, 163, 115, 0.7);
+    transform: scale(1.05);
+  }
+
+  .menu-buttons a:hover::before {
+    background-color: rgba(111, 78, 55, 0.3);
+  }
+}
+
+/* ==========================================
+   SLICK CAROUSEL - Mobile First
+   ========================================== */
 .slick-slider {
   margin: 0 auto;
-  max-width: 1100px;
+  max-width: 100%;
+  padding: 0 10px;
 }
 
 .slick-slide > div {
-  margin: 0 10px;
+  margin: 0 5px;
 }
 
 .slick-prev,
 .slick-next {
   z-index: 1;
+  width: 30px;
+  height: 30px;
 }
 
 .slick-prev {
-  left: 25px;
+  left: 5px;
 }
 
 .slick-next {
-  right: 25px;
+  right: 5px;
 }
 
 .slick-prev:before,
 .slick-next:before {
-  font-size: 30px;
+  font-size: 24px;
   color: var(--primary);
+}
+
+.slick-dots {
+  bottom: -35px;
 }
 
 .slick-dots li button:before {
   color: var(--primary);
+  font-size: 8px;
 }
 
 .slick-dots li.slick-active button:before {
   color: var(--accent);
 }
 
-/* Forms */
+@media (min-width: 768px) {
+  .slick-slider {
+    max-width: 720px;
+  }
+
+  .slick-slide > div {
+    margin: 0 8px;
+  }
+
+  .slick-prev {
+    left: 15px;
+  }
+
+  .slick-next {
+    right: 15px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 28px;
+  }
+
+  .slick-dots li button:before {
+    font-size: 10px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .slick-slider {
+    max-width: 1100px;
+  }
+
+  .slick-slide > div {
+    margin: 0 10px;
+  }
+
+  .slick-prev {
+    left: 25px;
+  }
+
+  .slick-next {
+    right: 25px;
+  }
+
+  .slick-prev:before,
+  .slick-next:before {
+    font-size: 30px;
+  }
+}
+
+/* ==========================================
+   CONTACT SECTION - Mobile First
+   ========================================== */
+.contact-content {
+  text-align: center;
+  max-width: 100%;
+  margin: 0 auto;
+}
+
+.contact-intro {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.contact-info {
+  margin-bottom: 2rem;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-top: 1.5rem;
+  align-items: center;
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.9rem 1.2rem;
+  background: white;
+  border-radius: 10px;
+  text-decoration: none;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 0.9rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  width: 100%;
+  max-width: 320px;
+  justify-content: center;
+}
+
+.social-link svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+}
+
+.social-link.email {
+  color: var(--primary);
+}
+
+.social-link.email svg {
+  stroke: var(--primary);
+}
+
+.social-link.facebook {
+  color: #1877f2;
+}
+
+.social-link.instagram {
+  color: #e4405f;
+}
+
+.social-link:active {
+  transform: translateY(2px);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================
+   FORMS - Mobile First
+   ========================================== */
 .contact,
 .feedback {
   background-color: var(--secondary);
-  padding: 2rem;
+  padding: 1.5rem;
   border-radius: 10px;
-  margin-top: 3rem;
-  max-width: 900px;
+  margin-top: 2rem;
+  max-width: 100%;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Feedback specific styling */
+#feedback .feedback {
+  margin-top: 0;
+  max-width: 600px;
 }
 
 form {
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 input,
@@ -252,6 +931,7 @@ select {
   border-radius: 5px;
   font-family: inherit;
   width: 100%;
+  font-size: 1rem;
 }
 
 button {
@@ -262,26 +942,84 @@ button {
   border-radius: 5px;
   font-size: 1rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: all 0.3s ease;
+  font-weight: 500;
 }
 
-button:hover {
-  background-color: var(--accent);
-  color: var(--text);
+button:active {
+  transform: scale(0.98);
 }
 
-/* Footer - always at bottom */
+@media (min-width: 768px) {
+  .contact,
+  .feedback {
+    padding: 2rem;
+    margin-top: 2.5rem;
+    max-width: 700px;
+  }
+
+  #feedback .feedback {
+    margin-top: 0;
+    padding: 2.5rem;
+  }
+
+  form {
+    gap: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .contact,
+  .feedback {
+    max-width: 900px;
+    margin-top: 3rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  #feedback .feedback {
+    margin-top: 0;
+    max-width: 650px;
+    padding: 3rem;
+  }
+
+  button:hover {
+    background-color: var(--accent);
+    color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 163, 115, 0.5);
+  }
+}
+
+/* ==========================================
+   FOOTER - Mobile First
+   ========================================== */
 footer {
   text-align: center;
   background-color: var(--primary);
   color: white;
-  padding: 1.5rem;
+  padding: 1rem;
   margin-top: auto;
   flex-shrink: 0;
   width: 100%;
+  font-size: 0.9rem;
 }
 
-/* ===== Custom Modal Alert ===== */
+@media (min-width: 768px) {
+  footer {
+    padding: 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer {
+    padding: 1.5rem;
+  }
+}
+
+/* ==========================================
+   MODAL ALERT - Mobile First
+   ========================================== */
 .custom-alert {
   display: none;
   position: fixed;
@@ -292,10 +1030,11 @@ footer {
   color: var(--text);
   font-family: "Playfair Display", serif;
   border-radius: 12px;
-  padding: 20px 25px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 18px 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   text-align: center;
-  width: 320px;
+  width: 90%;
+  max-width: 280px;
   opacity: 0;
   transition: all 0.3s ease-in-out;
   z-index: 9999;
@@ -308,34 +1047,66 @@ footer {
 }
 
 .custom-alert h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 8px;
+  font-size: 18px;
   color: var(--primary);
 }
 
 .custom-alert p {
-  font-size: 15px;
-  margin-bottom: 15px;
+  font-size: 14px;
+  margin-bottom: 12px;
 }
 
 .custom-alert button {
   background: var(--primary);
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  margin: 0 5px;
+  font-size: 13px;
+  margin: 0 4px;
   transition: background 0.2s ease;
 }
 
-.custom-alert button:hover {
+.custom-alert button:active {
   background: var(--accent);
   color: var(--text);
 }
 
-/* ===== Toast Notification ===== */
+@media (min-width: 768px) {
+  .custom-alert {
+    max-width: 320px;
+    padding: 20px 25px;
+  }
+
+  .custom-alert h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .custom-alert p {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  .custom-alert button {
+    font-size: 14px;
+    padding: 8px 15px;
+    margin: 0 5px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .custom-alert button:hover {
+    background: var(--accent);
+    color: var(--text);
+  }
+}
+
+/* ==========================================
+   TOAST NOTIFICATION - Mobile First
+   ========================================== */
 .toast {
   visibility: hidden;
   min-width: 200px;
@@ -344,16 +1115,17 @@ footer {
   color: var(--light);
   text-align: center;
   border-radius: 8px;
-  padding: 12px;
+  padding: 10px;
   position: fixed;
   z-index: 9999;
   left: 50%;
-  bottom: 30px;
-  font-size: 14px;
+  bottom: 20px;
+  font-size: 13px;
   font-family: "Open Sans", sans-serif;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s, transform 0.5s;
+  max-width: 80%;
 }
 
 .toast.show {
@@ -362,78 +1134,11 @@ footer {
   transform: translateY(0);
 }
 
-/* === Section Spacing Enhancements === */
-#menu {
-  margin-top: 8rem;
-  margin-bottom: 8rem;
-}
-
-#contact {
-  margin-top: 8rem;
-  margin-bottom: 3rem;
-}
-
-#feedback {
-  margin-top: 8rem;
-  margin-bottom: 8rem;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar-background {
-    padding: 0.8rem 0;
-  }
-
-  nav {
-    justify-content: center;
-    gap: 1rem;
-    margin-right: 0;
-    padding: 0 1rem;
-  }
-
-  nav a,
-  nav span {
-    padding: 0.5rem 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  nav span {
-    font-size: 0.8rem;
-    text-align: center;
-    width: 100%;
-    margin-top: 0.5rem;
-  }
-
-  header h1 {
-    font-size: 3rem;
-  }
-}
-
-@media (max-width: 600px) {
-  header h1 {
-    font-size: 2rem;
-  }
-
-  nav {
-    gap: 0.5rem;
-  }
-
-  nav a,
-  nav span {
-    padding: 0.4rem 0.6rem;
-    font-size: 0.75rem;
-  }
-
-  .menu-buttons {
-    flex-direction: column;
-    gap: 1rem;
-  }
-
-  .slick-prev {
-    left: 10px;
-  }
-
-  .slick-next {
-    right: 10px;
+@media (min-width: 768px) {
+  .toast {
+    padding: 12px;
+    bottom: 30px;
+    font-size: 14px;
+    max-width: none;
   }
 }

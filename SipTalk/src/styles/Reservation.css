@@ -1,37 +1,40 @@
+/* ==========================================
+   RESERVATION PAGE - Mobile First
+   ========================================== */
 .reservation-page {
   background: var(--light);
   min-height: 100vh;
-  padding-top: 80px;
+  padding-top: 70px;
 }
 
 .reservation-container {
-  max-width: 600px;
-  margin: 3rem auto;
-  padding: 2rem;
+  max-width: 100%;
+  margin: 1rem;
+  padding: 1.25rem;
   background: var(--secondary);
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
 }
 
 .reservation-container h2 {
   font-family: "Playfair Display", serif;
   text-align: center;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   color: var(--primary);
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
 
 .reservation-container form {
   display: grid;
-  gap: 1rem;
+  gap: 0.8rem;
 }
 
 .reservation-container input {
-  padding: 0.75rem;
+  padding: 0.7rem;
   border: 1px solid #ccc;
   border-radius: 5px;
   font-family: "Open Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   transition: border-color 0.3s ease;
 }
 
@@ -41,22 +44,19 @@
 }
 
 .reservation-container button[type="submit"] {
-  padding: 0.75rem;
+  padding: 0.7rem;
   background: var(--primary);
   color: white;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.reservation-container button[type="submit"]:hover:not(:disabled) {
-  background: var(--accent);
-  color: var(--text);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 10px rgba(212, 163, 115, 0.5);
+.reservation-container button[type="submit"]:active:not(:disabled) {
+  transform: scale(0.98);
 }
 
 .reservation-container button[type="submit"]:disabled {
@@ -67,24 +67,23 @@
 .reservation-container .back-button {
   display: block;
   width: 100%;
-  margin-top: 1rem;
-  padding: 0.75rem;
+  margin-top: 0.8rem;
+  padding: 0.7rem;
   background: transparent;
   color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: 5px;
   cursor: pointer;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   transition: all 0.3s ease;
 }
 
-.reservation-container .back-button:hover {
-  background: var(--primary);
-  color: white;
+.reservation-container .back-button:active {
+  transform: scale(0.98);
 }
 
-/* Custom Modal Alert */
+/* Custom Modal Alert - Mobile First */
 .custom-alert {
   display: none;
   position: fixed;
@@ -95,10 +94,11 @@
   color: var(--text);
   font-family: 'Playfair Display', serif;
   border-radius: 12px;
-  padding: 20px 25px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+  padding: 18px 20px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
   text-align: center;
-  width: 320px;
+  width: 90%;
+  max-width: 280px;
   opacity: 0;
   transition: all 0.3s ease-in-out;
   z-index: 9999;
@@ -111,34 +111,34 @@
 }
 
 .custom-alert h3 {
-  margin-bottom: 10px;
-  font-size: 20px;
+  margin-bottom: 8px;
+  font-size: 18px;
   color: var(--primary);
 }
 
 .custom-alert p {
-  font-size: 15px;
-  margin-bottom: 15px;
+  font-size: 14px;
+  margin-bottom: 12px;
 }
 
 .custom-alert button {
   background: var(--primary);
   color: #fff;
   border: none;
-  padding: 8px 15px;
+  padding: 8px 14px;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
-  margin: 0 5px;
+  font-size: 13px;
+  margin: 0 4px;
   transition: background 0.2s ease;
 }
 
-.custom-alert button:hover {
+.custom-alert button:active {
   background: var(--accent);
   color: var(--text);
 }
 
-/* Toast Notification */
+/* Toast Notification - Mobile First */
 .toast {
   visibility: hidden;
   min-width: 200px;
@@ -147,16 +147,17 @@
   color: var(--light);
   text-align: center;
   border-radius: 8px;
-  padding: 12px;
+  padding: 10px;
   position: fixed;
   z-index: 9999;
   left: 50%;
-  bottom: 30px;
-  font-size: 14px;
+  bottom: 20px;
+  font-size: 13px;
   font-family: 'Open Sans', sans-serif;
   opacity: 0;
   transform: translateY(20px);
   transition: opacity 0.5s, transform 0.5s;
+  max-width: 80%;
 }
 
 .toast.show {
@@ -165,19 +166,153 @@
   transform: translateY(0);
 }
 
-/* Responsive */
-@media (max-width: 600px) {
+/* Tablet and up */
+@media (min-width: 768px) {
+  .reservation-page {
+    padding-top: 90px;
+  }
+
   .reservation-container {
-    margin: 1rem;
-    padding: 1.5rem;
+    max-width: 550px;
+    margin: 2rem auto;
+    padding: 1.75rem;
+    box-shadow: 0 4px 9px rgba(0, 0, 0, 0.1);
   }
 
   .reservation-container h2 {
-    font-size: 1.5rem;
+    font-size: 1.75rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .reservation-container form {
+    gap: 0.9rem;
+  }
+
+  .reservation-container input {
+    padding: 0.72rem;
+    font-size: 0.98rem;
+  }
+
+  .reservation-container button[type="submit"] {
+    padding: 0.72rem;
+    font-size: 0.98rem;
+  }
+
+  .reservation-container .back-button {
+    margin-top: 0.9rem;
+    padding: 0.72rem;
+    font-size: 0.98rem;
   }
 
   .custom-alert {
-    width: 280px;
+    max-width: 300px;
+    padding: 19px 22px;
+  }
+
+  .custom-alert h3 {
+    font-size: 19px;
+    margin-bottom: 9px;
+  }
+
+  .custom-alert p {
+    font-size: 14.5px;
+    margin-bottom: 13px;
+  }
+
+  .custom-alert button {
+    font-size: 13.5px;
+    padding: 8px 14.5px;
+    margin: 0 4.5px;
+  }
+
+  .toast {
+    padding: 11px;
+    bottom: 25px;
+    font-size: 13.5px;
+    max-width: none;
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .reservation-page {
+    padding-top: 80px;
+  }
+
+  .reservation-container {
+    max-width: 600px;
+    margin: 3rem auto;
+    padding: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .reservation-container h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .reservation-container form {
+    gap: 1rem;
+  }
+
+  .reservation-container input {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .reservation-container button[type="submit"] {
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .reservation-container button[type="submit"]:hover:not(:disabled) {
+    background: var(--accent);
+    color: var(--text);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(212, 163, 115, 0.5);
+  }
+
+  .reservation-container .back-button {
+    margin-top: 1rem;
+    padding: 0.75rem;
+    font-size: 1rem;
+  }
+
+  .reservation-container .back-button:hover {
+    background: var(--primary);
+    color: white;
+  }
+
+  .custom-alert {
+    max-width: 320px;
+    padding: 20px 25px;
+  }
+
+  .custom-alert h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+
+  .custom-alert p {
+    font-size: 15px;
+    margin-bottom: 15px;
+  }
+
+  .custom-alert button {
+    font-size: 14px;
+    padding: 8px 15px;
+    margin: 0 5px;
+  }
+
+  .custom-alert button:hover {
+    background: var(--accent);
+    color: var(--text);
+  }
+
+  .toast {
+    padding: 12px;
+    bottom: 30px;
+    font-size: 14px;
   }
 }
 

@@ -1,20 +1,24 @@
+/* ==========================================
+   404 NOT FOUND PAGE - Mobile First
+   ========================================== */
 .not-found-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  padding: 20px;
+  padding: 1rem;
 }
 
 .not-found-content {
   text-align: center;
   color: white;
-  max-width: 600px;
+  max-width: 100%;
+  padding: 0 0.5rem;
 }
 
 .not-found-title {
-  font-size: 120px;
+  font-size: 72px;
   font-weight: bold;
   margin: 0;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
@@ -22,36 +26,106 @@
 }
 
 .not-found-subtitle {
-  font-size: 36px;
-  margin: 10px 0;
+  font-size: 24px;
+  margin: 8px 0;
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
 }
 
 .not-found-message {
-  font-size: 18px;
-  margin: 20px 0;
-  line-height: 1.6;
+  font-size: 15px;
+  margin: 15px 0;
+  line-height: 1.5;
   opacity: 0.9;
 }
 
 .not-found-button {
-  padding: 15px 40px;
-  font-size: 18px;
+  padding: 12px 32px;
+  font-size: 16px;
   background-color: white;
   color: #667eea;
   border: none;
   border-radius: 50px;
   cursor: pointer;
   font-weight: bold;
-  margin-top: 20px;
+  margin-top: 15px;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.2);
 }
 
-.not-found-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-  background-color: #f0f0f0;
+.not-found-button:active {
+  transform: scale(0.98);
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .not-found-container {
+    padding: 1.5rem;
+  }
+
+  .not-found-content {
+    max-width: 550px;
+  }
+
+  .not-found-title {
+    font-size: 100px;
+  }
+
+  .not-found-subtitle {
+    font-size: 32px;
+    margin: 9px 0;
+  }
+
+  .not-found-message {
+    font-size: 17px;
+    margin: 18px 0;
+    line-height: 1.55;
+  }
+
+  .not-found-button {
+    padding: 13px 36px;
+    font-size: 17px;
+    margin-top: 18px;
+    box-shadow: 0 3.5px 13px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* Desktop and up */
+@media (min-width: 1024px) {
+  .not-found-container {
+    padding: 20px;
+  }
+
+  .not-found-content {
+    max-width: 600px;
+  }
+
+  .not-found-title {
+    font-size: 120px;
+  }
+
+  .not-found-subtitle {
+    font-size: 36px;
+    margin: 10px 0;
+  }
+
+  .not-found-message {
+    font-size: 18px;
+    margin: 20px 0;
+    line-height: 1.6;
+  }
+
+  .not-found-button {
+    padding: 15px 40px;
+    font-size: 18px;
+    margin-top: 20px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  }
+
+  .not-found-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background-color: #f0f0f0;
+  }
 }
 
 @keyframes fadeIn {
